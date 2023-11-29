@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const path = require('path');
 
 class ProductManager {
   constructor(filePath) {
@@ -42,11 +43,11 @@ class ProductManager {
     try {
       const data = await fs.readFile(this.path, 'utf8');
       const products = JSON.parse(data);
-  
+
       if (limit) {
         return products.slice(0, limit);
       }
-  
+
       return products;
     } catch (error) {
       console.error('Error reading file:', error);

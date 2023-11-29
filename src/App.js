@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const productRouter = require('./productRouter');
+const ProductManager = require('./ProductManager');
+const path = require('path');
 
 const app = express();
 const port = 8080;
@@ -8,6 +10,8 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 app.use('/api/products', productRouter);
+
+const productManager = new ProductManager(path.join(__dirname, 'src', 'productos.json'));
 
 app.get('/', (req, res) => {
   res.send('Bienvenidos al Servidor de e-commerce!');
